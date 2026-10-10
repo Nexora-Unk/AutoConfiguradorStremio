@@ -1,0 +1,1 @@
+# AutoConfiguradorStremio
