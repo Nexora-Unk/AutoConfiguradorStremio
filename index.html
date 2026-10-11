@@ -8,7 +8,14 @@
 :root{--bg:#03040a;--panel:#0a0c18;--tile:#0f1226;--field:#070914;--line:#1f2446;--tx:#f4f6ff;--mut:#8f96b8;--c1:#18d6ee;--c2:#b052f5;--grad:linear-gradient(120deg,#18d6ee,#2f7cf5 42%,#a21cf0 78%,#d726e8);--ok:#4ade80;--err:#f87171}
 *{box-sizing:border-box}
 body{margin:0;background:radial-gradient(800px 420px at 8% -8%,#18d6ee24,transparent),radial-gradient(800px 420px at 100% 0,#a21cf02e,transparent),var(--bg);background-attachment:fixed;color:var(--tx);font:16px/1.55 "Segoe UI",system-ui,sans-serif}
-header{padding:56px 24px 28px;max-width:1200px;margin:auto}
+.top{border-bottom:1px solid #a050f040;background:#0a0612b8;backdrop-filter:blur(8px)}
+.top div{max-width:1200px;margin:0 auto;padding:14px 24px}
+.brand{display:inline-flex;flex-direction:column;gap:6px;text-decoration:none;transition:opacity .15s,transform .15s}
+.brand:hover{opacity:.88;transform:translateY(-1px)}
+.brand b{font:italic 900 1.85rem/1 "Segoe UI",system-ui,sans-serif;letter-spacing:-.02em;color:#f4f2ff}
+.brand b i{font-style:italic;background:linear-gradient(120deg,#a050f0,#d726e8);-webkit-background-clip:text;background-clip:text;color:transparent}
+.brand small{font-size:.6rem;letter-spacing:.34em;color:var(--mut);text-transform:uppercase}
+header{padding:44px 24px 28px;max-width:1200px;margin:auto}
 h1{font-size:clamp(2.2rem,6vw,4rem);line-height:1.05;margin:0 0 12px;letter-spacing:-.03em;font-weight:800;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
 header p{max-width:62ch;color:var(--mut);margin:0}
 main{max-width:1200px;margin:auto;padding:0 24px 60px;display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:28px;align-items:start}
@@ -61,6 +68,9 @@ footer b{background:var(--grad);-webkit-background-clip:text;background-clip:tex
 <link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;800&display=swap" rel="stylesheet">
 </head>
 <body>
+<nav class="top"><div>
+  <a class="brand" id="brand" href="/" aria-label="Ir a la página principal de Nexora"><b>NEX<i>ORA</i></b><small>Tools &amp; Resources</small></a>
+</div></nav>
 <header>
   <h1 id="titulo">Addons para Stremio</h1>
   <p>Elige los addons, inicia sesión con tu cuenta de Stremio y se instalan todos juntos. Si prefieres no dar tu contraseña, usa el botón «1 clic» de cada addon.</p>
@@ -106,6 +116,7 @@ footer b{background:var(--grad);-webkit-background-clip:text;background-clip:tex
 /* ============ CONFIGURACIÓN: edita solo esta parte ============ */
 const CONFIG = {
   TITULO: "Addons latinos para Stremio",
+  HOME_URL: "https://nexoraunktools.blogspot.com", // a dónde lleva el logo de arriba
   API: "https://api.strem.io/api",
   // Cada addon tiene: color (borde y degradado) y cover (imagen de portada 16:9, ej. 640x360, enlace o ruta como "portadas/torrentio.png").
   // Si tu portada ya trae el nombre dibujado, agrega hideTitle:true para ocultar el texto de la página.
@@ -279,6 +290,7 @@ async function restore(f) {
 }
 
 /* ---------- Eventos ---------- */
+$("#brand").href = CONFIG.HOME_URL || "/";
 document.title = CONFIG.TITULO; $("#titulo").textContent = CONFIG.TITULO;
 $("#tLogin").onclick = () => setMode("login"); $("#tSign").onclick = () => setMode("sign");
 $("#go").onclick = auth; $("#pass").onkeydown = e => { if (e.key === "Enter") auth(); };
