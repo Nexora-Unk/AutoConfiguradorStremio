@@ -61,6 +61,8 @@ input:focus,select:focus,button:focus-visible{outline:2px solid var(--c1);outlin
 #toast small{display:block;color:var(--mut);margin-top:6px}
 #toast button{background:none;border:0;color:var(--mut);font-size:1.3rem;line-height:1;cursor:pointer;padding:0 0 0 4px}
 @media(max-width:560px){#toast{left:14px;right:14px;max-width:none;bottom:14px}}
+a.tile{display:block;color:inherit;text-decoration:none}
+#dl{margin-bottom:28px}
 [hidden]{display:none!important}
 footer{max-width:1200px;margin:0 auto;padding:26px 24px 40px;border-top:1px solid var(--line);text-align:center;color:var(--mut);font-size:.9rem}
 footer b{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
@@ -77,6 +79,8 @@ footer b{background:var(--grad);-webkit-background-clip:text;background-clip:tex
 </header>
 <main>
   <section>
+    <div class="bar"><span>Descarga la app</span></div>
+    <div id="dl"></div>
     <div class="bar"><span id="stats"></span><button class="lnk" id="tog" type="button">Quitar todos</button></div>
     <div id="list"></div>
   </section>
@@ -117,6 +121,11 @@ footer b{background:var(--grad);-webkit-background-clip:text;background-clip:tex
 const CONFIG = {
   TITULO: "Addons latinos para Stremio",
   HOME_URL: "https://nexoraunktools.blogspot.com", // a dónde lleva el logo de arriba
+  // Portadas de descarga que salen arriba de los addons. Cambia url, cover (imagen 16:9) y color. Con hideTitle:true se oculta el texto si tu imagen ya lo trae.
+  DESCARGAS: [
+    { name: "Descargar Stremio APK", color: "#5F59EA", cover: "https://raw.githubusercontent.com/Nexora-Unk/Cosas-Generales/refs/heads/main/Portadas/unnamed.png", url: "https://www.stremio.com/downloads" },
+    { name: "Descargar Stremio Playstore", color: "#3b82f6", cover: "https://raw.githubusercontent.com/Nexora-Unk/Cosas-Generales/refs/heads/main/Portadas/google-play-logo-nuevo.png", url: "https://play.google.com/store/apps/details?id=com.stremio.one" }
+  ],
   API: "https://api.strem.io/api",
   // Cada addon tiene: color (borde y degradado) y cover (imagen de portada 16:9, ej. 640x360, enlace o ruta como "portadas/torrentio.png").
   // Si tu portada ya trae el nombre dibujado, agrega hideTitle:true para ocultar el texto de la página.
@@ -182,6 +191,15 @@ async function getManifest(url, tries = 2) {
 const checks = () => [...document.querySelectorAll("#list input")];
 function stats() { $("#stats").textContent = checks().filter(c => c.checked).length + " de " + CONFIG.ADDONS.length + " addons seleccionados"; }
 function refreshLinks() { document.querySelectorAll("#list .one").forEach((l, i) => { l.href = finalUrl(CONFIG.ADDONS[i]).replace(/^https?:\/\//i, "stremio://"); }); }
+function renderDownloads() {
+  const box = $("#dl"); box.className = "grid";
+  CONFIG.DESCARGAS.forEach(d => {
+    const t = el("a", "tile"); t.href = d.url; t.target = "_blank"; t.rel = "noopener"; t.title = d.name; t.style.setProperty("--k", d.color || "#b052f5");
+    if (d.cover) { const im = new Image(); im.alt = ""; im.loading = "lazy"; im.src = d.cover; im.onerror = () => im.remove(); t.append(im); }
+    if (!(d.hideTitle && d.cover)) t.append(el("div", "tt", d.name));
+    t.append(el("span", "ck", "⬇")); box.append(t);
+  });
+}
 function render() {
   const box = $("#list"); box.className = "grid";
   CONFIG.ADDONS.forEach((a, i) => {
@@ -300,6 +318,7 @@ $("#debKey").oninput = refreshLinks;
 $("#rest").onclick = () => $("#file").click();
 $("#file").onchange = e => { if (e.target.files[0]) restore(e.target.files[0]); e.target.value = ""; };
 $("#tog").onclick = () => { const on = checks().some(c => c.checked); checks().forEach(c => { c.checked = !on; c.onchange(); }); $("#tog").textContent = on ? "Marcar todos" : "Quitar todos"; stats(); };
+renderDownloads();
 render();
 </script>
 </body>
