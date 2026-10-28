@@ -2,11 +2,10 @@
 <html lang="es">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#03040a">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Nexora · Addons para Stremio</title>
 <style>
-:root{color-scheme:dark;--bg:#03040a;--panel:#0a0c18;--tile:#0f1226;--field:#070914;--line:#1f2446;--tx:#f4f6ff;--mut:#8f96b8;--c1:#18d6ee;--c2:#b052f5;--grad:linear-gradient(120deg,#18d6ee,#2f7cf5 42%,#a21cf0 78%,#d726e8);--ok:#4ade80;--err:#f87171}
+:root{--bg:#03040a;--panel:#0a0c18;--tile:#0f1226;--field:#070914;--line:#1f2446;--tx:#f4f6ff;--mut:#8f96b8;--c1:#18d6ee;--c2:#b052f5;--grad:linear-gradient(120deg,#18d6ee,#2f7cf5 42%,#a21cf0 78%,#d726e8);--ok:#4ade80;--err:#f87171}
 *{box-sizing:border-box}
 body{margin:0;background:radial-gradient(800px 420px at 8% -8%,#18d6ee24,transparent),radial-gradient(800px 420px at 100% 0,#a21cf02e,transparent),var(--bg);background-attachment:fixed;color:var(--tx);font:16px/1.55 "Segoe UI",system-ui,sans-serif}
 .top{border-bottom:1px solid #a050f040;background:#0a0612b8;backdrop-filter:blur(8px)}
@@ -25,8 +24,7 @@ main{max-width:1200px;margin:auto;padding:0 24px 60px;display:grid;grid-template
 .lnk{background:none;border:0;color:var(--c1);cursor:pointer;font:inherit;padding:0}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:14px}
 .tile{--k:#b052f5;position:relative;aspect-ratio:16/9;border-radius:14px;overflow:hidden;border:2px solid var(--k);background:linear-gradient(135deg,color-mix(in srgb,var(--k) 38%,#0a0c18),#0a0c18);cursor:pointer;user-select:none;transition:filter .2s,transform .15s;box-shadow:0 6px 22px color-mix(in srgb,var(--k) 22%,transparent)}
-@media(hover:hover){.tile:hover{transform:translateY(-3px);box-shadow:0 10px 30px color-mix(in srgb,var(--k) 38%,transparent)}}
-.tile:focus-visible{outline:2px solid #fff;outline-offset:3px}
+.tile:hover{transform:translateY(-2px)}
 .tile img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .tile::after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 38%,color-mix(in srgb,var(--k) 80%,#000) 100%)}
 .tt{position:absolute;left:12px;right:12px;bottom:9px;z-index:2;font-family:Poppins,"Segoe UI",system-ui,sans-serif;text-transform:uppercase;font-weight:800;font-size:.84rem;line-height:1.15;text-shadow:0 1px 6px #000a}
@@ -68,48 +66,6 @@ a.tile{display:block;color:inherit;text-decoration:none}
 [hidden]{display:none!important}
 footer{max-width:1200px;margin:0 auto;padding:26px 24px 40px;border-top:1px solid var(--line);text-align:center;color:var(--mut);font-size:.9rem}
 footer b{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
-
-html{scroll-behavior:smooth}
-.bar{align-items:center}
-.sec{display:flex;align-items:center;flex-wrap:wrap;gap:6px 10px;color:var(--tx);font-weight:700;font-size:1rem}
-.sec i{font-style:normal;display:grid;place-items:center;width:26px;height:26px;border-radius:50%;background:var(--grad);color:#07070d;font-size:.8rem;font-weight:800}
-#stats{color:var(--mut);font-weight:400;font-size:.82rem}
-.tile{animation:pop .45s ease both}
-@keyframes pop{from{opacity:0;transform:translateY(10px)}}
-.btn{min-height:46px;transition:filter .15s,transform .15s}
-.btn:hover:not(:disabled){filter:brightness(1.1);transform:translateY(-1px)}
-.btn:active:not(:disabled){transform:none}
-.btn:disabled::after{content:"";display:inline-block;width:14px;height:14px;margin-left:8px;border:2px solid #0004;border-top-color:#07070d;border-radius:50%;animation:sp .7s linear infinite;vertical-align:-2px}
-@keyframes sp{to{transform:rotate(360deg)}}
-.tabs button{min-height:44px}
-#log:not(:empty){padding:10px 12px;border-radius:10px;background:#ffffff08;border:1px solid var(--line)}
-#log.ok{border-color:#4ade8055}#log.err{border-color:#f8717155}
-#mbar{display:none}
-@media(min-width:901px){.panel{max-height:calc(100vh - 32px);overflow:auto}}
-@media(max-width:900px){
-  .panel{position:static}
-  body{padding-bottom:calc(76px + env(safe-area-inset-bottom))}
-  #mbar{position:fixed;left:0;right:0;bottom:0;z-index:40;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 16px calc(10px + env(safe-area-inset-bottom));background:#080a14ee;backdrop-filter:blur(10px);border-top:1px solid var(--line);transition:transform .25s}
-  #mbar.hide{transform:translateY(110%)}
-  #mbar .btn{width:auto;padding:11px 22px}
-  #mcount{color:var(--mut);font-size:.9rem}
-  #toast{bottom:calc(86px + env(safe-area-inset-bottom))}
-}
-@media(max-width:600px){
-  .top div{padding:12px 16px}.brand b{font-size:1.6rem}
-  header{padding:26px 16px 18px}header p{font-size:.95rem}
-  main{padding:0 16px 36px;gap:22px}
-  footer{padding:22px 16px 30px}
-  #stats{display:none}
-  .grid{grid-template-columns:repeat(2,1fr);gap:10px}
-  .tt{font-size:.7rem;left:9px;right:9px;bottom:7px}.tt small{display:none}
-  .st{font-size:.6rem;left:9px;top:10px}
-  .one{font-size:.65rem;right:34px;top:7px;padding:3px 6px}
-  .ck{width:22px;height:22px;top:7px;right:7px;font-size:.8rem}
-  .panel{padding:20px 16px 22px;border-radius:18px}
-  #toast{left:12px;right:12px;max-width:none}
-}
-@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 </style>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;800&display=swap" rel="stylesheet">
 </head>
@@ -123,9 +79,9 @@ html{scroll-behavior:smooth}
 </header>
 <main>
   <section>
-    <div class="bar"><span class="sec"><i>1</i>Descarga la app</span></div>
+    <div class="bar"><span>Descarga la app</span></div>
     <div id="dl"></div>
-    <div class="bar"><span class="sec"><i>2</i>Elige tus addons<span id="stats"></span></span><button class="lnk" id="tog" type="button">Quitar todos</button></div>
+    <div class="bar"><span id="stats"></span><button class="lnk" id="tog" type="button">Quitar todos</button></div>
     <div id="list"></div>
   </section>
   <aside class="panel">
@@ -157,7 +113,6 @@ html{scroll-behavior:smooth}
     <p class="note">Tu contraseña va directo a Stremio y no se guarda. Antes de modificar tu cuenta se descarga un respaldo de tus addons actuales.</p>
   </aside>
 </main>
-<div id="mbar"><span id="mcount"></span><button class="btn" id="mgo" type="button">Continuar →</button></div>
 <div id="toast" role="alert"><span class="ic">⚠️</span><div id="toastBody"></div><button id="toastX" type="button" aria-label="Cerrar">×</button></div>
 <footer>Hecho por <b>NexoraUnk</b></footer>
 
@@ -177,7 +132,7 @@ const CONFIG = {
   ADDONS: [
     {name:"Cinemeta (Requerido)", color:"#AF2FF4", cover:"https://raw.githubusercontent.com/Nexora-Unk/nexora-nuvio-assets/refs/heads/main/Stremio/01_CineMeta.png", desc:"Catálogos y metadatos base", url:"stremio://v3-cinemeta.strem.io/manifest.json"},
     {name:"Torrentio", color:"#0F7A4A", cover:"https://raw.githubusercontent.com/Nexora-Unk/nexora-nuvio-assets/refs/heads/main/Stremio/02_Comet_Stremio.png", desc:"Streams en latino y español", debrid:"torrentio", url:"https://torrentio.strem.fun/language=latino,spanish|qualityfilter=unknown,cam,scr,other,480p/manifest.json"},
-    {name:"Comet", color:"#063756", cover:"https://raw.githubusercontent.com/Nexora-Unk/nexora-nuvio-assets/refs/heads/main/Stremio/03_Comet_Stremio.png", desc:"Streams con prioridad en latino", debrid:"comet", url:"https://comet.elfhosted.com/eyJtYXhSZXN1bHRzUGVyUmVzb2x1dGlvbiI6MCwibWF4U2l6ZSI6MCwiY2FjaGVkT25seSI6ZmFsc2UsInNvcnRDYWNoZWRVbmNhY2hlZFRvZ2V0aGVyIjpmYWxzZSwicmVtb3ZlVHJhc2giOnRydWUsInJlc3VsdEZvcm1hdCI6WyJhbGwiXSwiZGVicmlkU2VydmljZXMiOltdLCJlbmFibGVUb3JyZW50IjpmYWxzZSwiZGVkdXBsaWNhdGVTdHJlYW1zIjpmYWxzZSwic2NyYXBlRGVicmlkQWNjb3VudFRvcnJlbnRzIjpmYWxzZSwiZGVicmlkU3RyZWFtUHJveHlQYXNzd29yZCI6IiIsImxhbmd1YWdlcyI6eyJyZXF1aXJlZCI6WyJlbiIsImVzIiwibGEiXSwiYWxsb3dlZCI6WyJlbiIsImVzIiwibGEiXSwiZXhjbHVkZSI6WyJhciIsImJnIiwiYm4iLCJjcyIsImRhIiwiZGUiLCJlbCIsImV0IiwiZmEiLCJmaSIsImZyIiwiZ3UiLCJoZSIsImhpIiwiaHIiLCJodSIsImlkIiwiaXQiLCJrbiIsImx0IiwibHYiLCJtbCIsIm1yIiwibXMiLCJubCIsIm5vIiwicGEiLCJwbCIsInB0Iiwicm8iLCJydSIsInNrIiwic2wiLCJzciIsInN2IiwidGEiLCJ0ZSIsInRoIiwidHIiLCJ1ayIsInZpIiwiemgiXSwicHJlZmVycmVkIjpbImxhIl19LCJyZXNvbHV0aW9ucyI6eyJyNTc2cCI6ZmFsc2UsInI0ODBwIjpmYWxzZSwicjM2MHAiOmZhbHNlLCJyMjQwcCI6ZmFsc2UsInVua25vd24iOmZhbHNlfSwib3B0aW9ucyI6eyJyZW1vdmVfcmFua3NfdW5kZXIiOi0xMDAwMDAwMDAwMCwiYWxsb3dfZW5nbGlzaF9pbl9sYW5ndWFnZXMiOmZhbHNlLCJyZW1vdmVfdW5rbm93bl9sYW5ndWFnZXMiOmZhbHNlfX0=/manifest.json"},
+    {name:"Comet", color:"#063756", cover:"https://raw.githubusercontent.com/Nexora-Unk/nexora-nuvio-assets/refs/heads/main/Stremio/03_Comet_Stremio.png", desc:"Streams con prioridad en latino", debrid:"comet", url:"https://cometfortheweebs.midnightignite.me/eyJtYXhSZXN1bHRzUGVyUmVzb2x1dGlvbiI6MCwibWF4U2l6ZSI6MCwiY2FjaGVkT25seSI6ZmFsc2UsInNvcnRDYWNoZWRVbmNhY2hlZFRvZ2V0aGVyIjpmYWxzZSwicmVtb3ZlVHJhc2giOnRydWUsInJlc3VsdEZvcm1hdCI6WyJhbGwiXSwiZGVicmlkU2VydmljZXMiOltdLCJlbmFibGVUb3JyZW50Ijp0cnVlLCJkZWR1cGxpY2F0ZVN0cmVhbXMiOmZhbHNlLCJzY3JhcGVEZWJyaWRBY2NvdW50VG9ycmVudHMiOmZhbHNlLCJkZWJyaWRTdHJlYW1Qcm94eVBhc3N3b3JkIjoiIiwibGFuZ3VhZ2VzIjp7InJlcXVpcmVkIjpbImVuIiwiZXMiLCJsYSJdLCJhbGxvd2VkIjpbImVuIiwiZXMiLCJsYSJdLCJleGNsdWRlIjpbImFyIiwiYmciLCJibiIsImNzIiwiZGEiLCJkZSIsImVsIiwiZXQiLCJmYSIsImZpIiwiZnIiLCJndSIsImhlIiwiaGkiLCJociIsImh1IiwiaWQiLCJpdCIsImtuIiwibHQiLCJsdiIsIm1sIiwibXIiLCJtcyIsIm5sIiwibm8iLCJwYSIsInBsIiwicHQiLCJybyIsInJ1Iiwic2siLCJzbCIsInNyIiwic3YiLCJ0YSIsInRlIiwidGgiLCJ0ciIsInVrIiwidmkiXSwicHJlZmVycmVkIjpbImVzIiwibGEiXX0sInJlc29sdXRpb25zIjp7InI0ODBwIjpmYWxzZSwicjM2MHAiOmZhbHNlLCJyMjQwcCI6ZmFsc2UsInVua25vd24iOmZhbHNlfSwib3B0aW9ucyI6eyJyZW1vdmVfcmFua3NfdW5kZXIiOi0xMDAwMDAwMDAwMCwiYWxsb3dfZW5nbGlzaF9pbl9sYW5ndWFnZXMiOmZhbHNlLCJyZW1vdmVfdW5rbm93bl9sYW5ndWFnZXMiOmZhbHNlfX0=/manifest.json"},
     {name:"DeepFlix", color:"#03A2F8", cover:"https://raw.githubusercontent.com/Nexora-Unk/nexora-nuvio-assets/refs/heads/main/Stremio/04_DeepFlix.png", desc:"Addon adicional", url:"https://mg.homelabx.qzz.io/manifest.json"},
     {name:"AddonLatam", color:"#D40B15", cover:"https://raw.githubusercontent.com/Nexora-Unk/nexora-nuvio-assets/refs/heads/main/Stremio/05_AddonLatam.png", desc:"Addon adicional", url:"https://addonlatam.duckdns.org/A0wrYOb7z4LiG5vrhQwcb-g4/manifest.json"},
     {name:"AnimES", color:"#FFFFFF", cover:"https://raw.githubusercontent.com/Nexora-Unk/nexora-nuvio-assets/refs/heads/main/Stremio/06_AnimES.png", desc:"Anime en español", url:"https://pigamer37.alwaysdata.net/onAirCatalogs=animeav1%2Chenaojara%2Ctioanime%2Cjkanime/manifest.json"},
@@ -207,6 +162,21 @@ const debridUrl = (a, svc, key) => {
   }
   return u;
 };
+const hostOf = u => { try { return new URL(fixUrl(u)).host; } catch (e) { return ""; } };
+const DEB_RE = () => new RegExp("\\|(" + [...$("#deb").options].map(o => o.value).filter(Boolean).join("|") + ")=[^|/]*", "i");
+// ¿Este enlace es el del catálogo, o el mismo addon con una clave debrid agregada por esta página?
+function isMine(a, u) {
+  try {
+    u = fixUrl(u);
+    if (keyOf(u) === keyOf(a.url)) return true;
+    const re = DEB_RE(), M = /^(https?:\/\/[^/]+\/)([^/]+)(\/manifest\.json)$/;
+    if (a.debrid === "torrentio") return keyOf(decodeURIComponent(u).replace(re, "")) === keyOf(decodeURIComponent(fixUrl(a.url)));
+    const m = u.match(M), o = fixUrl(a.url).match(M); if (!m || !o) return false;
+    if (a.debrid === "comet") { const c = JSON.parse(atob(m[2])), c0 = JSON.parse(atob(o[2])); c.debridServices = c0.debridServices; return JSON.stringify(c) === JSON.stringify(c0); }
+    if (a.debrid === "filtorrent") { const c = JSON.parse(decodeURIComponent(m[2])), c0 = JSON.parse(decodeURIComponent(o[2])); const n = t => decodeURIComponent(t || "").replace(re, "").replace(/\/+$/, ""); return n(c.torrentioUrl) === n(c0.torrentioUrl); }
+  } catch (e) {}
+  return false;
+}
 const finalUrl = a => { const s = $("#deb").value, k = $("#debKey").value.trim(); try { return s && k && a.debrid ? debridUrl(a, s, k) : fixUrl(a.url); } catch (e) { return fixUrl(a.url); } };
 let session = null;
 const log = (m, t) => { const l = $("#log"); l.textContent = m; l.className = t || ""; };
@@ -234,7 +204,7 @@ async function getManifest(url, tries = 2) {
 
 /* ---------- Lista de addons ---------- */
 const checks = () => [...document.querySelectorAll("#list input")];
-function stats() { const n = checks().filter(c => c.checked).length; $("#stats").textContent = n + " de " + CONFIG.ADDONS.length + " seleccionados"; $("#mcount").textContent = n + " de " + CONFIG.ADDONS.length + " addons"; }
+function stats() { $("#stats").textContent = checks().filter(c => c.checked).length + " de " + CONFIG.ADDONS.length + " addons seleccionados"; }
 function refreshLinks() { document.querySelectorAll("#list .one").forEach((l, i) => { l.href = finalUrl(CONFIG.ADDONS[i]).replace(/^https?:\/\//i, "stremio://"); }); }
 function renderDownloads() {
   const box = $("#dl"); box.className = "grid";
@@ -250,10 +220,8 @@ function render() {
   CONFIG.ADDONS.forEach((a, i) => {
     const t = el("div", "tile"); t.style.setProperty("--k", a.color || "#b052f5"); t.title = a.desc || a.name;
     const cb = document.createElement("input"); cb.type = "checkbox"; cb.checked = true; cb.dataset.i = i; cb.hidden = true;
-    cb.onchange = () => { t.classList.toggle("off", !cb.checked); t.setAttribute("aria-checked", cb.checked); stats(); };
+    cb.onchange = () => { t.classList.toggle("off", !cb.checked); stats(); };
     t.onclick = () => { cb.checked = !cb.checked; cb.onchange(); };
-    t.tabIndex = 0; t.setAttribute("role", "checkbox"); t.setAttribute("aria-checked", "true"); t.setAttribute("aria-label", a.name);
-    t.onkeydown = e => { if (e.key === " " || e.key === "Enter") { e.preventDefault(); t.onclick(); } };
     if (a.cover) { const im = new Image(); im.alt = ""; im.loading = "lazy"; im.src = a.cover; im.onerror = () => im.remove(); t.append(im); }
     t.append(cb);
     if (!(a.hideTitle && a.cover)) { const tt = el("div", "tt", a.name.replace(" (Requerido)", "")); if (a.desc) tt.append(el("small", "", a.desc)); t.append(tt); }
@@ -325,18 +293,34 @@ async function install() {
     const have = new Set(list.map(a => keyOf(a.transportUrl)));
     let added = 0, changed = 0; const fails = [];
     for (const a of chosen) {
-      const url = finalUrl(a), host = new URL(fixUrl(a.url)).host, useDeb = svc && a.debrid;
-      const i = useDeb ? list.findIndex(x => { try { return new URL(x.transportUrl).host === host; } catch (e) { return false; } }) : -1;
+      const url = finalUrl(a), host = hostOf(a.url), tk = keyOf(url);
       try {
-        if (i >= 0) { list[i] = Object.assign({}, list[i], { transportUrl: url }); changed++; }
-        else if (!have.has(keyOf(a.url))) {
+        if (a.debrid) {
+          // copias de este addon que instaló esta página (sin debrid o con la clave de otro servicio)
+          const mine = []; list.forEach((x, ix) => { if (hostOf(x.transportUrl) === host && isMine(a, x.transportUrl)) mine.push(ix); });
+          if (mine.length) {
+            const keep = mine.find(ix => keyOf(list[ix].transportUrl) === tk); const k = keep === undefined ? mine[0] : keep;
+            const dup = mine.filter(ix => ix !== k); let ch = dup.length > 0;
+            if (keyOf(list[k].transportUrl) !== tk) {
+              log("Actualizando " + a.name + "…");
+              let man = list[k].manifest; try { man = await getManifest(url); } catch (e) {}
+              list[k] = Object.assign({}, list[k], { transportUrl: url, manifest: man }); ch = true;
+            }
+            dup.sort((p, q) => q - p).forEach(ix => list.splice(ix, 1));
+            if (ch) changed++;
+            continue;
+          }
+          // no hay copia de esta página: con debrid se pisa la primera del mismo servidor, como antes
+          if (svc) { const i = list.findIndex(x => hostOf(x.transportUrl) === host); if (i >= 0) { list[i] = Object.assign({}, list[i], { transportUrl: url }); changed++; continue; } }
+        }
+        if (!have.has(keyOf(a.url))) {
           log("Instalando " + a.name + "…");
           list.push({ transportUrl: url, transportName: "", manifest: await getManifest(url), flags: {} }); added++;
         }
       } catch (e) { fails.push({ a, url, why: e.message }); }
     }
     if (added || changed) await api("addonCollectionSet", { type: "AddonCollectionSet", authKey: session, addons: list });
-    let msg = added || changed ? "Listo: " + added + " agregados, " + changed + " actualizados con debrid.\n" : "Todos los addons ya estaban instalados.\n";
+    let msg = added || changed ? "Listo: " + added + " agregados, " + changed + " actualizados.\n" : "Todos los addons ya estaban instalados.\n";
     if (fails.length) { msg += "No se pudieron instalar desde aquí: " + fails.map(f => f.a.name).join(", ") + ".\nInstálalos con estos botones:\n"; showToast(fails.map(f => f.a.name)); fails.forEach(f => { const l = el("a", "fl", "Instalar " + f.a.name); l.href = f.url.replace(/^https?:\/\//i, "stremio://"); $("#fails").append(l); }); }
     log(msg + "Abre o actualiza Stremio para verlos.", fails.length ? "err" : "ok");
   } catch (e) { log(e.message, "err"); }
@@ -367,8 +351,6 @@ $("#file").onchange = e => { if (e.target.files[0]) restore(e.target.files[0]); 
 $("#tog").onclick = () => { const on = checks().some(c => c.checked); checks().forEach(c => { c.checked = !on; c.onchange(); }); $("#tog").textContent = on ? "Marcar todos" : "Quitar todos"; stats(); };
 renderDownloads();
 render();
-$("#mgo").onclick = () => document.querySelector(".panel").scrollIntoView({ behavior: "smooth", block: "start" });
-if ("IntersectionObserver" in window) new IntersectionObserver(e => $("#mbar").classList.toggle("hide", e[0].isIntersecting), { threshold: 0.15 }).observe(document.querySelector(".panel"));
 </script>
 </body>
 </html>
